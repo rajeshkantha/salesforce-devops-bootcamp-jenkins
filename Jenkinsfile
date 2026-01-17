@@ -21,12 +21,20 @@ pipeline {
             }
         }
 
-        /*stage('Install Salesforce CLI #') {
+        stage('Install Salesforce CLI #') {
             steps {
                 echo 'Installing Salesforce CLI'
                 sh "npm install @salesforce/cli --global"
             }
-        }*/
+        }
+
+        stage('Diagnostics') {
+            steps {
+                sh 'whoami'
+                sh 'pwd'
+                sh 'sf --version'
+            }
+        }
 
         stage('Authorize Salesforce Org') {
             steps {
@@ -61,6 +69,8 @@ pipeline {
             }
         }
     }
+
+       
 
     post {
         always {
