@@ -33,7 +33,7 @@ pipeline {
                 script {
                     // Authenticate using the JWT flow
                     echo 'Authenticate using the JWT flow............'
-                    sh "sf org login jwt --client-id ${SF_CONSUMER_KEY} --jwt-key-file ${SERVER_KEY_FILE} --username ${SF_USERNAME} --instance-url ${INSTANCE_URL} --set-default"
+                    sh 'sf org login jwt --client-id ${SF_CONSUMER_KEY} --jwt-key-file ${SERVER_KEY_FILE} --username ${SF_USERNAME} --instance-url ${INSTANCE_URL} --set-default'
                     echo 'Authenticate successful.................' 
                 }
             }
@@ -55,7 +55,7 @@ pipeline {
                     // Deploy source code. 
                     // Use --test-level RunLocalTests for Production or RunSpecifiedTests
                     echo 'Deploy source code............'
-                    sh "sf project deploy start --target-org ${SF_USERNAME} --wait 30"
+                    sh 'sf project deploy start --target-org ${SF_USERNAME} --wait 30'
                     echo 'Deploy source code completed............'
                 }
             }
@@ -65,7 +65,7 @@ pipeline {
     post {
         always {
             echo 'Logging out Salesforce Org..........'
-            sh "sf org logout --target-org ${SF_USERNAME} --no-prompt"
+            sh 'sf org logout --target-org ${SF_USERNAME} --no-prompt'
             echo 'Cleaning up the workspace...........'
             cleanWs()
         }
