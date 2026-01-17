@@ -53,7 +53,7 @@ pipeline {
                 script {
                     echo 'Running unit tests...'
                     // Optional: Run local tests before deploying
-                    //sh "sf apex run test --wait 10 --result-format human"
+                    sh 'sf apex run test --wait 10 --result-format human'
                 }
             }
         }
