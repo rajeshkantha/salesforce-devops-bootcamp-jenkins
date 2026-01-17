@@ -76,7 +76,7 @@ pipeline {
     post {
         always {
             echo 'Logging out Salesforce Org..........'
-            //sh 'sf org logout --target-org ${SF_USERNAME} --no-prompt'
+            sh 'sf org logout --target-org ${SF_USERNAME} --no-prompt'
             echo 'Cleaning up the workspace...........'
             cleanWs()
         }
