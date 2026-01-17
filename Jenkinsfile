@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        // This name must match exactly the Name you gave in Global Tool Configuration
+        nodejs 'Node 25'
+    }
     
     environment {
         // Reference Jenkins Credentials IDs here
@@ -16,12 +21,12 @@ pipeline {
             }
         }
 
-        stage('Install Salesforce CLI #') {
+        /*stage('Install Salesforce CLI #') {
             steps {
                 echo 'Installing Salesforce CLI'
                 sh "npm install @salesforce/cli --global"
             }
-        }
+        }*/
 
         stage('Authorize Salesforce Org') {
             steps {
