@@ -16,6 +16,13 @@ pipeline {
             }
         }
 
+        stage('Install Salesforce CLI #') {
+            steps {
+                echo 'Installing Salesforce CLI'
+                sh "npm install @salesforce/cli --global"
+            }
+        }
+
         stage('Authorize Salesforce Org') {
             steps {
                 script {
