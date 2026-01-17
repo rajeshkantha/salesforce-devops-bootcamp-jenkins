@@ -11,7 +11,7 @@ pipeline {
         SF_CONSUMER_KEY = credentials('SF_CONSUMER_KEY')
         SF_USERNAME     = 'rkantha-bootcamp@salesforce.com.devops'
         INSTANCE_URL    = 'https://login.salesforce.com' // or https://test.salesforce.com
-        SERVER_KEY_FILE = credentials('SF_SERVER_KEY_FILE') 
+        SF_SERVER_KEY_FILE = credentials('SERVER_KEY_FILE') 
     }
 
     stages {
@@ -41,7 +41,8 @@ pipeline {
                 script {
                     // Authenticate using the JWT flow
                     echo 'Authenticate using the JWT flow............'
-                    sh 'sf org login jwt --client-id ${SF_CONSUMER_KEY} --jwt-key-file ${SERVER_KEY_FILE} --username ${SF_USERNAME} --instance-url ${INSTANCE_URL} --set-default'
+                    //echo '${SF_SERVER_KEY_FILE}' > server.key
+                    sh 'sf org login jwt --client-id ${SF_CONSUMER_KEY} --jwt-key-file ${SF_SERVER_KEY_FILE} --username ${SF_USERNAME} --instance-url ${INSTANCE_URL} --set-default'
                     echo 'Authenticate successful.................' 
                 }
             }
